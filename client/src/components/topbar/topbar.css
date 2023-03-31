@@ -1,0 +1,67 @@
+.top {
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  z-index: 999;
+  /* padding: 10px; */
+  background-color: rgb(233, 233, 233);
+  box-shadow: 1px 2px 13px 3px #bbb8b861;
+}
+
+.topLeft,
+.topRight {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  height: 60px;
+  border-radius: 40px;
+}
+
+.topCenter {
+  flex: 6;
+}
+
+.topImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.topIcon {
+  font-size: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.topList {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 2rem;
+}
+
+.topListItem {
+  font-size: 1.5rem;
+  font-weight: 400;
+  cursor: pointer;
+  list-style: none;
+}
+/* .topListItem:hover {
+  border-bottom: 1px solid black;
+} */
+
+.topSearchIcon {
+  font-size: 18px;
+  color: #666;
+  cursor: pointer;
+  margin-left: 15px;
+}

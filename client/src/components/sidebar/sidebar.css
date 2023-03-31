@@ -1,0 +1,84 @@
+.sidebar {
+  flex: 3;
+  margin: 20px;
+  padding-bottom: 30px;
+  background-color: #fdfbfb;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  top: 150px;
+  height: 60vh;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transition: 1s ease-out;
+}
+
+.sidebarItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebarCatItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebarTitle {
+  margin: 10px;
+  padding: 5px;
+  width: 80%;
+  border-top: 1px solid #a7a4a4;
+  border-bottom: 1px solid #a7a4a4;
+  font-size: 12px;
+  color: #222;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+}
+
+.sidebar img {
+  margin-top: 15px;
+}
+
+.sidebar p {
+  padding: 30px;
+}
+
+.sidebarList {
+  list-style: none;
+  margin-bottom: 30px;
+  height: 150px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.sidebarListItem {
+  display: inline-block;
+  /* width: 50%; */
+  /* margin-top: 15px; */
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.sidebarSocial {
+  margin-top: 15px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebarIcon {
+  font-size: 16px;
+  margin-left: 10px;
+  cursor: pointer;
+}

@@ -1,0 +1,103 @@
+.write {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .writeImgChild {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: blue;
+} */
+
+.insImg {
+  height: 300px;
+  width: 70vw;
+  border-radius: 5px;
+  padding: 10px 10px 0 10px;
+  /* object-fit: contain; */
+  background-color: rgba(1, 175, 175, 0.247);
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mySwiper {
+  width: 100%;
+}
+
+.addImg {
+  /* background-color: blue; */
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.insImgChild {
+  height: 200px;
+  width: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+  background-color: grey;
+  margin: 0 10px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.insImgChild:hover .removeImg {
+  display: block;
+}
+
+.removeImg {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  color: red;
+  cursor: pointer;
+  display: none;
+}
+
+.removeImg:hover {
+  transform: scale(1.3);
+}
+
+.writeFormGroup {
+  width: 70vw;
+}
+
+.writeInput {
+  font-size: 30px;
+  border: none;
+  padding: 20px;
+  width: 100%;
+  margin: 2px;
+}
+
+.writeInput:focus {
+  outline: none;
+}
+
+.writeText {
+  font-size: 20px;
+  height: 50vh;
+}
+
+.writeSubmit {
+  color: white;
+  background-color: teal;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,0 +1,12 @@
+.home {
+  display: flex;
+}
+
+.catMenu {
+  position: fixed;
+  right: 2rem;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  color: red;
+}

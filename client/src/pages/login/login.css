@@ -1,0 +1,136 @@
+.login {
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(177, 219, 219);
+  align-items: center;
+}
+
+.logContainer {
+  height: 400px;
+  width: 350px;
+  background-color: #33333d;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.loginTitle {
+  font-size: 30px;
+  margin-bottom: 30px;
+  color: lightgrey;
+}
+
+.loginForm {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginForm label {
+  position: absolute;
+  color: grey;
+  left: 5px;
+  top: -8px;
+  background-color: #33333d;
+  font-size: 18px;
+  padding: 0 5px;
+}
+
+.lDiv {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid whitesmoke;
+  border-radius: 6px;
+  background-color: transparent;
+  position: relative;
+  margin: 10px 0;
+}
+
+.loginInput {
+  width: 100%;
+  height: 35px;
+  padding: 5px 10px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  color: white;
+  caret-color: whitesmoke;
+}
+
+.passInput {
+  /* background-color: white; */
+  width: 88%;
+}
+
+.lpass {
+  display: flex;
+  flex-direction: row;
+}
+
+.phide {
+  color: grey;
+  height: 100%;
+  margin: auto;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.loginButton {
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  background-color: #20b780;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.loginButton:hover {
+  transform: scale(1.02);
+  transition: 0.1s ease-in-out;
+}
+.loginButton:disabled {
+  cursor: not-allowed;
+  background-color: rgba(240, 128, 128, 0.253);
+}
+
+.loginRegisterButton {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: teal;
+  cursor: pointer;
+  border: none;
+  padding: 10px;
+  color: white;
+  border-radius: 10px;
+}
+
+.loginForm span {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.loginForm .Link {
+  margin-top: 15px;
+  color: lightgrey;
+  text-decoration: none;
+  padding: 2px 0;
+  border-bottom: 1px solid #c199dc;
+}
