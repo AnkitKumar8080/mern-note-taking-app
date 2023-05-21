@@ -1,6 +1,6 @@
 import "./singleImg.css";
 export default function SingleImg({ imageUrl }) {
-  const PF = "http://localhost:5000/images/";
+  const PF = process.env.REACT_APP_PF;
   return (
     <>
       <img className="singleImg" src={PF + imageUrl} alt={imageUrl} />

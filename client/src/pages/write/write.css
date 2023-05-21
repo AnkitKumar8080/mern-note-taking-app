@@ -46,19 +46,17 @@
   margin: 0 10px;
   border-radius: 10px;
   position: relative;
-}
-
-.insImgChild:hover .removeImg {
-  display: block;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .removeImg {
   position: absolute;
+  font-size: 20px;
   right: 7px;
   top: 7px;
   color: red;
   cursor: pointer;
-  display: none;
+  display: block;
 }
 
 .removeImg:hover {
@@ -72,7 +70,7 @@
 .writeInput {
   font-size: 30px;
   border: none;
-  padding: 20px;
+  padding: 15px;
   width: 100%;
   margin: 2px;
 }
@@ -84,6 +82,7 @@
 .writeText {
   font-size: 20px;
   height: 50vh;
+  resize: none;
 }
 
 .writeSubmit {
@@ -100,4 +99,41 @@
 .link {
   text-decoration: none;
   color: inherit;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+@media screen and (max-width: 400px) {
+  .insImg {
+    height: 300px;
+    width: 90vw;
+  }
+
+  .addImg {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .insImgChild {
+    height: 200px;
+    width: auto;
+  }
+
+  .writeFormGroup {
+    width: 90vw;
+  }
+
+  .writeInput {
+    font-size: 25px;
+  }
+
+  .writeText {
+    font-size: 18px;
+  }
 }

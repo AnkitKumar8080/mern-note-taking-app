@@ -1,5 +1,5 @@
 import "./write.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
@@ -19,10 +19,8 @@ export default function Write() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const { user } = useContext(Context);
-  const [postImgs, setPostImgs] = useState([]);
   // the main raw fileList will be stored in this file list state
   const [fileList, setfileList] = useState([]);
-  const handleImgPost = async () => {};
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
@@ -39,7 +37,6 @@ export default function Write() {
       for (let i = 0; i < fileList.length; i++) {
         uploadImgArray.push(fileList[i].name);
       }
-      setPostImgs(uploadImgArray);
       newPost.photo = uploadImgArray;
       try {
         await axios.post("/api/upload", data, {
@@ -61,6 +58,22 @@ export default function Write() {
   const handleRemoveImg = (index) => {
     setfileList(fileList.filter((item, i) => i !== index));
   };
+  const [slidesPerView, setSlidesPerView] = useState(3);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1528) setSlidesPerView(3);
+      else if (window.innerWidth >= 1000) setSlidesPerView(2);
+      else setSlidesPerView(1);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div className="write">
@@ -71,7 +84,7 @@ export default function Write() {
       >
         <div className="insImg">
           <Swiper
-            slidesPerView={3}
+            slidesPerView={slidesPerView}
             spaceBetween={30}
             pagination={{
               clickable: true,

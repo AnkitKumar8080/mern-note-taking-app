@@ -2,18 +2,22 @@
   width: 400px;
   margin: 0px 25px 40px 25px;
   /* background-color: yellow; */
-  padding: 15px 0 15px 0;
 }
 
 .postImg {
   width: 95%;
   height: 280px;
-  object-fit: cover contain;
+  object-fit: fill;
   border-radius: 7px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+@media screen and (max-width: 400px) {
+  .postImg {
+    height: 200px;
+  }
+}
 .postInfo {
   display: flex;
   flex-direction: column;
@@ -40,7 +44,7 @@
   font-style: italic;
   font-size: 13px;
   color: grey;
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 .postDesc {

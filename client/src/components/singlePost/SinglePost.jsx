@@ -16,7 +16,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper";
-export default function () {
+export default function SinglePost() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
@@ -38,7 +38,7 @@ export default function () {
     };
     fetchPost();
   }, [path]);
-  const PF = "http://localhost:5000/images/";
+  const PF = process.env.REACT_APP_PF;
   const { user } = useContext(Context);
   const handleDelete = async () => {
     try {
@@ -74,12 +74,28 @@ export default function () {
   const handleCloseImg = () => {
     setIsViewImg(false);
   };
+  const [slidesPerView, setSlidesPerView] = useState(3);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1528) setSlidesPerView(3);
+      else if (window.innerWidth >= 1000) setSlidesPerView(2);
+      else setSlidesPerView(1);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
         <div className="singlePostImgCont">
           <Swiper
-            slidesPerView={3}
+            slidesPerView={slidesPerView}
             spaceBetween={30}
             pagination={{
               clickable: true,

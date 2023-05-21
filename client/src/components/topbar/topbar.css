@@ -1,13 +1,13 @@
 .top {
   width: 100%;
-  height: 70px;
+  height: 80px;
+  padding:10px; 
   background-color: white;
   position: sticky;
   top: 0;
   display: flex;
   align-items: center;
   z-index: 999;
-  /* padding: 10px; */
   background-color: rgb(233, 233, 233);
   box-shadow: 1px 2px 13px 3px #bbb8b861;
 }
@@ -22,8 +22,12 @@
 
 .logo {
   height: 60px;
-  border-radius: 40px;
+  width:60px; 
+  border-radius: 50%;
+  object-fit: cover;
 }
+
+
 
 .topCenter {
   flex: 6;
@@ -59,9 +63,37 @@
   border-bottom: 1px solid black;
 } */
 
+.settingLink{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settingLink p{
+  margin-top: 4px;
+}
+
 .topSearchIcon {
   font-size: 18px;
   color: #666;
   cursor: pointer;
   margin-left: 15px;
+}
+
+@media screen and (max-width:400px) {
+  .logo{
+    height: 40px;
+    width: 40px;
+  }
+
+  .topList {
+    gap: 1rem;
+  }
+
+  .topListItem {
+    font-size: 1.2rem;
+    font-weight: 400;
+    cursor: pointer;
+    list-style: none;
+  }
 }

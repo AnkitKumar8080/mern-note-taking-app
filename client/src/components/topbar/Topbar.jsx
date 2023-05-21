@@ -1,11 +1,4 @@
 import "./topbar.css";
-import {
-  FaFacebookSquare,
-  FaInstagramSquare,
-  FaPinterest,
-  FaSearch,
-  FaTwitterSquare,
-} from "react-icons/fa";
 import { AiOutlineUser } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
@@ -18,14 +11,11 @@ export default function Topbar() {
       type: "LOGOUT",
     });
   };
-  const logo = "http://localhost:5000/images/sdfsdf.png";
+  const logo = process.env.REACT_APP_LOGO;
+  const PF = process.env.REACT_APP_PF;
   return (
     <div className="top">
       <div className="topLeft">
-        {/* <FaFacebookSquare className="topIcon" />
-        <FaInstagramSquare className="topIcon" />
-        <FaPinterest className="topIcon" />
-        <FaTwitterSquare className="topIcon" /> */}
         <img className="logo" src={logo} alt="" />
       </div>
       <div className="topCenter">
@@ -35,16 +25,6 @@ export default function Topbar() {
               Home
             </Link>
           </li>
-          {/* <li className="topListItem">
-            <Link className="link" to="/about">
-              About
-            </Link>
-          </li> */}
-          {/* <li className="topListItem">
-            <Link className="link" to="/contact">
-              Contact
-            </Link>
-          </li> */}
           <li className="topListItem">
             <Link className="link" to="/write">
               Write
@@ -62,12 +42,9 @@ export default function Topbar() {
       <div className="topRight">
         {user ? (
           user.profilePic ? (
-            <Link to="/settings" className="link">
-              <img
-                src={"http://localhost:5000/images/" + user.profilePic}
-                alt="sdf"
-                className="topImg"
-              />
+            <Link to="/settings" className="link settingLink">
+              <img src={PF + user.profilePic} alt="sdf" className="topImg" />
+              <p>{user.username.charAt(0).toUpperCase()+user.username.slice(1)}</p>
             </Link>
           ) : (
             <Link to="/settings" className="link">

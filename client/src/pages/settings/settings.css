@@ -5,7 +5,7 @@
 }
 
 .settingsWrapper {
-  width: 80%;
+  width: 80vw;
   margin-top: 4rem;
 }
 
@@ -18,7 +18,7 @@
 .settingsUpdateTitle {
   font-size: 30px;
   margin-bottom: 20px;
-  color: lightcoral;
+  color: teal;
 }
 
 .settingsDeleteTitle {
@@ -48,7 +48,7 @@
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  object-fit: cover contain;
+  object-fit: fill;
 }
 
 .settingsPPIcon {
@@ -75,7 +75,7 @@
   border-bottom: 1px solid black;
   outline: none;
   padding: 5px;
-  width: 30%;
+  width: auto;
   font-size: 15px;
 }
 
@@ -88,4 +88,33 @@
   padding: 10px;
   margin-top: 20px;
   cursor: pointer;
+}
+@media screen and (max-width: 600px) {
+  .asdf {
+    flex-direction: column;
+  }
+
+  .settingsPP img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: fill;
+  }
+  .settingsPP {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+    flex: 4;
+  }
+  .settingsUpdateTitle {
+    font-size: 25px;
+    margin-bottom: 0;
+    color: teal;
+  }
+
+  .settingsWrapper {
+    width: 90vw;
+    margin-top: 20px;
+  }
 }

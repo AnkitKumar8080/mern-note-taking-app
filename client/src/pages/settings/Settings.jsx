@@ -1,4 +1,3 @@
-import Sidebar from "../../components/sidebar/Sidebar";
 import "./settings.css";
 import { FaUserCircle } from "react-icons/fa";
 import { useContext } from "react";
@@ -50,6 +49,7 @@ export default function Settings() {
       console.log(err);
     }
   };
+  const PF = process.env.REACT_APP_PF;
   return (
     <div className="settings">
       <div className="settingsWrapper">
@@ -59,7 +59,6 @@ export default function Settings() {
             Delete Account
           </span>
         </div>
-        <label>Profile Picture</label>
         <div className="asdf">
           <div className="settingsPP">
             <img
@@ -67,8 +66,8 @@ export default function Settings() {
                 file
                   ? URL.createObjectURL(file)
                   : user.profilePic
-                  ? "http://localhost:3000/images/" + user.profilePic
-                  : "http://localhost:3000/images/noProf.png"
+                  ? PF + user.profilePic
+                  : PF + "/noProf.png"
               }
               alt="ppImg"
             />
@@ -101,6 +100,7 @@ export default function Settings() {
               type="password"
               placeholder="Enter new password...."
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="off"
             />
             <button type="submit" className="settingsSubmit">
               Update
