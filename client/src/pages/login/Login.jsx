@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import "./login.css";
+import { Link } from "react-router-dom";
 import { useContext, useRef, useState } from "react";
 import { Context } from "../../context/Context";
 import axios from "axios";
@@ -15,10 +15,13 @@ export default function Login() {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
     try {
-      const res = await axios.post("/api/auth/login", {
-        email: userRef.current.value,
-        password: passRef.current.value,
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/api/auth/login`,
+        {
+          email: userRef.current.value,
+          password: passRef.current.value,
+        }
+      );
       !res.data && setInvalidUser(true);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (error) {

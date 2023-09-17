@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: myapp-node-server
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    networks:
+      - my_network
+    volumes:
+      - api_images:/server/images
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: myapp-nginx-client
+    restart: unless-stopped
+    ports:
+      - "8004:80"
+    networks:
+      - my_network
+
+volumes:
+  api_images:
+
+networks:
+  my_network:
+    driver: bridge

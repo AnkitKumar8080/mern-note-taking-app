@@ -7,7 +7,7 @@ export default function Image({ file }) {
       <img
         src={URL.createObjectURL(file)}
         className="writeImg"
-        alt="writeImg"
+        alt={file.name}
       />
     </>
   );

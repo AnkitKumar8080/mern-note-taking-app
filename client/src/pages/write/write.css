@@ -5,28 +5,21 @@
   align-items: center;
 }
 
-/* .writeImgChild {
-  width: 200px;
-  height: 200px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  background-color: blue;
-} */
-
 .insImg {
-  height: 300px;
+  height: max-content;
   width: 70vw;
   border-radius: 5px;
-  padding: 10px 10px 0 10px;
-  /* object-fit: contain; */
+  padding: 30px;
   background-color: rgba(1, 175, 175, 0.247);
   margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
 }
 
 .mySwiper {
   width: 100%;
+}
+
+.mySwiper .swiper-pagination-bullets {
+  bottom: -2px !important;
 }
 
 .addImg {
@@ -34,7 +27,7 @@
   display: flex;
   width: 100%;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .insImgChild {
@@ -73,6 +66,8 @@
   padding: 15px;
   width: 100%;
   margin: 2px;
+  resize: none;
+  border-radius: 5px;
 }
 
 .writeInput:focus {
@@ -86,14 +81,22 @@
 }
 
 .writeSubmit {
-  color: white;
-  background-color: teal;
-  padding: 10px;
   border: none;
-  border-radius: 10px;
+  background-color: teal;
+  width: 100px;
+  padding: 10px 5px;
+  color: white;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
-  margin: 10px;
+  align-self: flex-end;
+  margin: 1rem 0;
+  font-weight: 400;
+  font-size: 18px;
+  box-shadow: 2px 2px 8px 0px #00000094;
+}
+
+.writeSubmit:hover {
+  background-color: rgba(0, 128, 128, 0.808);
 }
 
 .link {
@@ -104,7 +107,7 @@
 .swiper-slide {
   display: flex;
   justify-content: center;
-  padding: 10px;
+  padding-bottom: 20px;
 }
 
 @media screen and (max-width: 400px) {

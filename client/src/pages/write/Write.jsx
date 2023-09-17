@@ -14,13 +14,75 @@ import "swiper/css";
 import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper";
+import { useNavigate } from "react-router-dom";
+
+import { dataUrlToFile, fileToDataUrl } from "../../utils/fileUrlConversion";
 
 export default function Write() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const { user } = useContext(Context);
+  const navigate = useNavigate();
+
   // the main raw fileList will be stored in this file list state
   const [fileList, setfileList] = useState([]);
+  // loading the data from local storage on page load
+  useEffect(() => {
+    const savedTitle = localStorage.getItem("savedTitle");
+    const savedDesc = localStorage.getItem("savedDesc");
+    const dataUrls = JSON.parse(localStorage.getItem("dataURLs"));
+    if (savedTitle) setTitle(savedTitle);
+    if (savedDesc) setDesc(savedDesc);
+
+    if (dataUrls) {
+      const filePromises = dataUrls?.map((dataUrl) => {
+        return dataUrlToFile(dataUrl.url, dataUrl.fileName)
+          .then((file) => {
+            return file;
+          })
+          .catch((error) => {
+            console.error("Error in converting file to DataUrl");
+            return null;
+          });
+      });
+      Promise.all(filePromises).then((files) => {
+        const filteredFiles = files.filter((file) => file !== null);
+        setfileList(filteredFiles);
+      });
+    }
+  }, []);
+
+  // saving the data in local storage
+  useEffect(() => {
+    localStorage.setItem("savedTitle", title);
+  }, [title]);
+
+  useEffect(() => {
+    localStorage.setItem("savedDesc", desc);
+  }, [desc]);
+
+  useEffect(() => {
+    const dataUrlsPromises = fileList.map((file) => {
+      return fileToDataUrl(file)
+        .then((dataURL) => {
+          return { url: dataURL, fileName: file.name };
+        })
+        .catch((error) => {
+          console.error("Error converting file to Data URL:", error);
+          return null;
+        });
+    });
+    Promise.all(dataUrlsPromises).then((dataUrls) => {
+      // Filter out any null values (files with errors)
+      const filteredDataUrls = dataUrls.filter((dataUrl) => dataUrl !== null);
+
+      // Store the filteredDataUrls array in local storage
+      const dataUrlsJson = JSON.stringify(filteredDataUrls);
+      localStorage.setItem("dataURLs", dataUrlsJson);
+    });
+  }, [fileList]);
+
+  // handling the submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
@@ -35,11 +97,11 @@ export default function Write() {
       }
       let uploadImgArray = [];
       for (let i = 0; i < fileList.length; i++) {
-        uploadImgArray.push(fileList[i].name);
+        uploadImgArray.push(fileList[i].name.replace(/\s+/g, "_"));
       }
       newPost.photo = uploadImgArray;
       try {
-        await axios.post("/api/upload", data, {
+        await axios.post(`${process.env.REACT_APP_BASE_URL}/api/upload`, data, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -47,14 +109,23 @@ export default function Write() {
       } catch (err) {}
     }
     try {
-      const res = await axios.post("/api/posts", newPost);
-      window.location.replace("/post/" + res.data._id);
+      const res = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/api/posts`,
+        newPost
+      );
+
+      // clear the local storage
+      localStorage.removeItem("savedTitle");
+      localStorage.removeItem("savedDesc");
+      localStorage.removeItem("dataURLs");
+      // window.location.replace("/post/" + res.data._id);
+      navigate("/post/" + res.data._id);
     } catch (err) {}
   };
   const handleFileInputChange = (e) => {
-    setfileList([...fileList, e.target.files[0]]);
+    const newFile = e.target.files[0];
+    setfileList([...fileList, newFile]);
   };
-  // console.log(fileList);
   const handleRemoveImg = (index) => {
     setfileList(fileList.filter((item, i) => i !== index));
   };
@@ -95,7 +166,7 @@ export default function Write() {
             {fileList?.map((file, index) => (
               <SwiperSlide>
                 <div className="insImgChild">
-                  {<Image key={index} file={file} />}
+                  {<Image key={file.name} file={file} />}
                   <RxCross2
                     className="removeImg"
                     onClick={() => handleRemoveImg(index)}
@@ -122,6 +193,7 @@ export default function Write() {
             placeholder="Title"
             className="writeInput"
             autoFocus
+            value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
@@ -129,6 +201,7 @@ export default function Write() {
           <textarea
             className="writeText writeInput"
             placeholder="Tell your story ..."
+            value={desc}
             onChange={(e) => setDesc(e.target.value)}
           ></textarea>
         </div>

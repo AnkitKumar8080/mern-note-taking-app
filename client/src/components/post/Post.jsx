@@ -7,7 +7,11 @@ export default function Post({ post }) {
     <div className="post">
       {post.photo && (
         <Link className="link" to={`/post/${post._id}`}>
-          <img src={PF + post.photo[0]} alt="post img" className="postImg" />
+          {post.photo[0] ? (
+            <img src={PF + post.photo[0]} alt="post img" className="postImg" />
+          ) : (
+            <img src={PF + "noImg.png"} alt="post img" className="postImg" />
+          )}
         </Link>
       )}
 

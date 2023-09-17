@@ -24,25 +24,34 @@ export default function Settings() {
       data.append("file", file);
       updatedUser.profilePic = file.name;
       try {
-        await axios.post("/api/upload", data);
-      } catch (err) {}
+        await axios.post(`${process.env.REACT_APP_BASE_URL}/api/upload`, data);
+      } catch (err) {
+        console.log(err);
+      }
     }
     try {
       if (password) {
         updatedUser.password = password;
       }
-      const res = await axios.put("/api/users/" + user._id, updatedUser);
+      const res = await axios.put(
+        `${process.env.REACT_APP_BASE_URL}/api/users/${user._id}`,
+        updatedUser
+      );
       setSuccess(true);
       dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
     } catch (err) {
       dispatch({ type: "UPDATE_FAILURE" });
+      console.log(err);
     }
   };
   const handleDelete = async () => {
     try {
-      await axios.delete("api/users/" + user._id, {
-        data: { userId: user._id },
-      });
+      await axios.delete(
+        `${process.env.REACT_APP_BASE_URL}/api/users/` + user._id,
+        {
+          data: { userId: user._id },
+        }
+      );
       window.location.reload();
       localStorage.clear();
     } catch (err) {

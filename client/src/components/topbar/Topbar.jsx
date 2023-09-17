@@ -44,7 +44,9 @@ export default function Topbar() {
           user.profilePic ? (
             <Link to="/settings" className="link settingLink">
               <img src={PF + user.profilePic} alt="sdf" className="topImg" />
-              <p>{user.username.charAt(0).toUpperCase()+user.username.slice(1)}</p>
+              <p>
+                {user.username.charAt(0).toUpperCase() + user.username.slice(1)}
+              </p>
             </Link>
           ) : (
             <Link to="/settings" className="link">

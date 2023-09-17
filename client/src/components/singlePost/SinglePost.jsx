@@ -28,7 +28,9 @@ export default function SinglePost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await axios.get("/api/posts/" + path);
+        const res = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/api/posts/` + path
+        );
         setPost(res.data);
         setTitle(res.data.title);
         setDesc(res.data.desc);
@@ -43,24 +45,33 @@ export default function SinglePost() {
   const handleDelete = async () => {
     try {
       if (user.isAdmin) {
-        await axios.delete(`/api/posts/${path}?us=${user._id}`, {
-          data: { username: user.username },
-        });
+        await axios.delete(
+          `${process.env.REACT_APP_BASE_URL}/api/posts/${path}?us=${user._id}`,
+          {
+            data: { username: user.username },
+          }
+        );
       } else {
-        await axios.delete(`/api/posts/${path}`, {
-          data: { username: user.username },
-        });
+        await axios.delete(
+          `${process.env.REACT_APP_BASE_URL}/api/posts/${path}`,
+          {
+            data: { username: user.username },
+          }
+        );
       }
       window.location.replace("/");
     } catch (err) {}
   };
   const handleUpdate = async () => {
     try {
-      await axios.put(`/api/posts/${path}?us=${user._id}`, {
-        username: user.username,
-        title,
-        desc,
-      });
+      await axios.put(
+        `${process.env.REACT_APP_BASE_URL}/api/posts/${path}?us=${user._id}`,
+        {
+          username: user.username,
+          title,
+          desc,
+        }
+      );
 
       // window.location.reload();
       setUpdateMode(false);
@@ -116,13 +127,18 @@ export default function SinglePost() {
           </Swiper>
         </div>
         {updateMode ? (
-          <input
-            type="text"
-            value={title}
-            className="singlePostTitleInput "
-            autoFocus
-            onChange={(e) => setTitle(e.target.value)}
-          />
+          <>
+            <button className="cancelBtn" onClick={() => setUpdateMode(false)}>
+              cancel
+            </button>
+            <input
+              type="text"
+              value={title}
+              className="singlePostTitleInput "
+              autoFocus
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </>
         ) : (
           <h1 className="singlePostTitle">
             {title}
