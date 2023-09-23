@@ -80,6 +80,10 @@
   resize: none;
 }
 
+#myEditor_ifr {
+  resize: none;
+}
+
 .writeSubmit {
   border: none;
   background-color: teal;

@@ -6,6 +6,7 @@ import { Context } from "../../context/Context";
 import FormData from "form-data";
 import { BiImageAdd } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
+import { Editor } from "@tinymce/tinymce-react";
 import Image from "../../components/image/Image";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,7 +16,6 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper";
 import { useNavigate } from "react-router-dom";
-
 import { dataUrlToFile, fileToDataUrl } from "../../utils/fileUrlConversion";
 
 export default function Write() {
@@ -198,12 +198,38 @@ export default function Write() {
           />
         </div>
         <div className="writeFormGroup">
-          <textarea
+          {/* <textarea
             className="writeText writeInput"
             placeholder="Tell your story ..."
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
-          ></textarea>
+          ></textarea> */}
+          <Editor
+            className="writeText writeInput"
+            initialValue="Tell your story..."
+            value={desc}
+            apiKey="dgqqx79uf4o19y15a5ooz82lt8orrnwq3f8yn9hsexxplmd3"
+            handleResize="none"
+            init={{
+              height: 500,
+              menubar: false,
+              directionality: "ltr",
+              max_height: "50vh",
+              resize: false,
+              plugins:
+                "mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss",
+              toolbar:
+                "undo redo | formatselect | " +
+                "bold italic backcolor " +
+                "fontsize | fontsizeinput" +
+                "alignleft aligncenter " +
+                "alignright alignjustify | bullist numlist outdent indent | " +
+                "removeformat",
+              content_style:
+                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+            }}
+            onEditorChange={(newText) => setDesc(newText)}
+          />
         </div>
         <button className="writeSubmit" type="submit">
           Publish

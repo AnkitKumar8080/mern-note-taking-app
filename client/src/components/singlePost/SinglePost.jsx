@@ -16,6 +16,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper";
+import { Editor } from "@tinymce/tinymce-react";
 export default function SinglePost() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
@@ -168,13 +169,42 @@ export default function SinglePost() {
           </span>
         </div>
         {updateMode ? (
-          <textarea
+          // <textarea
+          //   className="singlePostDescInput"
+          //   value={desc}
+          //   onChange={(e) => setDesc(e.target.value)}
+          // />
+          <Editor
             className="singlePostDescInput"
             value={desc}
-            onChange={(e) => setDesc(e.target.value)}
+            apiKey="dgqqx79uf4o19y15a5ooz82lt8orrnwq3f8yn9hsexxplmd3"
+            handleResize="none"
+            init={{
+              height: 500,
+              menubar: false,
+              directionality: "ltr",
+              max_height: "50vh",
+              resize: false,
+              plugins:
+                "mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss",
+              toolbar:
+                "undo redo | formatselect | " +
+                "bold italic backcolor " +
+                "fontsize | fontsizeinput" +
+                "alignleft aligncenter " +
+                "alignright alignjustify | bullist numlist outdent indent | " +
+                "removeformat",
+              content_style:
+                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+            }}
+            onEditorChange={(newText) => setDesc(newText)}
           />
         ) : (
-          <textarea readOnly className="singlePostDesc" value={desc}></textarea>
+          // < readOnly className="singlePostDesc" value={desc}></>
+          <div
+            className="singlePostDesc"
+            dangerouslySetInnerHTML={{ __html: desc }}
+          />
         )}
         {updateMode && (
           <button className="singlePostButton" onClick={handleUpdate}>

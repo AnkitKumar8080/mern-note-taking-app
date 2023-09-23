@@ -12,7 +12,6 @@ const categoriesRoute = require("./routes/categories");
 const morgan = require("morgan");
 const multer = require("multer");
 const path = require("path");
-const cors = require("cors");
 
 // app.use(
 //   cors({
