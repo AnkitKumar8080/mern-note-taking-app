@@ -11,8 +11,8 @@ pipeline{
             steps{
                 script{
                     // build and deploy app using docker compose 
-                    sh '/usr/bin/docker-compose build'
-                    sh '/usr/bin/docker-compose up -d'
+                    // sh '/usr/bin/docker-compose build'
+                    sh '/usr/bin/docker-compose --version'
                 }
             }
         }
