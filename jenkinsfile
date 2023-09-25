@@ -11,8 +11,8 @@ pipeline{
             steps{
                 script{
                     // build and deploy app using docker compose 
-                    sh 'docker-compose -f docker-compose.yml build'
-                    sh 'docker-compose -f docker-compose.yml up -d'
+                    sh '/usr/local/bin/docker-compose -f docker-compose.yml build'
+                    sh '/usr/local/bin/docker-compose -f docker-compose.yml build'
                 }
             }
         }
