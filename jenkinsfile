@@ -15,7 +15,7 @@ pipeline{
                 script{
                     // build and deploy app using docker compose 
                     // sh '/usr/bin/docker-compose build'
-                    sh '/usr/bin/docker-compose --version'
+                    sh 'docker-compose --version'
                 }
             }
         }
