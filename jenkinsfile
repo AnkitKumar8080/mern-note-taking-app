@@ -15,8 +15,8 @@ pipeline{
                 script{
                     sh 'docker-compose --version'
                     //build and deploy app using docker compose 
-                    // sh 'docker compose -f docker-compose.yml build'
-                    // sh 'docker compose -f docker-compose up -d'
+                    sh 'docker-compose -f docker-compose.yml build'
+                    sh 'docker-compose -f docker-compose up -d'
                 }
             }
         }
